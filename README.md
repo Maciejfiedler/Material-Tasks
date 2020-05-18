@@ -1,2 +1,2 @@
 # Material-Tasks
-A tasks app built with Flutter.
+A task app built with Flutter.
