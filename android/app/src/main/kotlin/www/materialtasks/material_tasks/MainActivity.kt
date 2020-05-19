@@ -1,0 +1,6 @@
+package www.materialtasks.material_tasks
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
