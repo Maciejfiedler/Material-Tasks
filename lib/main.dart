@@ -19,7 +19,6 @@ class Start extends StatelessWidget {
         primaryColor: Colors.white,
         accentColor: Colors.white,
         cursorColor: Colors.black,
-        textSelectionColor: Colors.black,
         textSelectionHandleColor: Colors.black,
         inputDecorationTheme: InputDecorationTheme(
             focusedBorder: UnderlineInputBorder(
@@ -29,7 +28,6 @@ class Start extends StatelessWidget {
           brightness: Brightness.dark,
           accentColor: Colors.black,
           cursorColor: Colors.white,
-          textSelectionColor: Colors.white,
           textSelectionHandleColor: Colors.white,
           inputDecorationTheme: InputDecorationTheme(
               focusedBorder: UnderlineInputBorder(

@@ -125,9 +125,9 @@ class _DeleteAllState extends State<DeleteAll> {
   // initialize Shareds Preferences
   void initializeSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      onlyDeleteCompleted = prefs.getBool('deleteOnlyCompleted');
-    });
+
+    onlyDeleteCompleted = await prefs.setBool('deleteOnlyCompleted',
+        onlyDeleteCompleted == null ? true : onlyDeleteCompleted);
   }
 
   @override

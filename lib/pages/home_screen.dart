@@ -6,7 +6,6 @@ import 'package:Tasks/utils/model/task.dart';
 import 'package:Tasks/utils/database/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // Dart Packages
 import 'dart:math';
@@ -35,11 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Text Editing Controllers
   final TextEditingController titleController = TextEditingController();
-
-  // Notfication
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  NotificationAppLaunchDetails notificationAppLaunchDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -70,20 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     database: database,
                   ),
                 ).then((value) {
-                  // Show Snackbar
-                  if (itemsDeleted) {
-                    final snackBar = SnackBar(
-                      content: Text('Task Deleted'),
-                      action: SnackBarAction(
-                          label: 'Undo',
-                          onPressed: () {
-                            for (Task item in deletedTasks) {
-                              addTask(item.title);
-                            }
-                          }),
-                    );
-                    scaffoldKey.currentState.showSnackBar(snackBar);
-                  }
+                  getTasks();
                 });
               })
         ],
@@ -104,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Icon(Icons.add),
           onPressed: () async {
             showTextField();
-            showDailNotification();
           }),
     );
   }
@@ -167,6 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Show TextField
   void showTextField() {
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
         context: context,
         builder: (context) => Padding(
               padding: MediaQuery.of(context).viewInsets,
@@ -184,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       suffixIcon: IconButton(
                           icon: Icon(
                             Icons.send,
-                            color: Theme.of(context).textSelectionColor,
+                            color: Theme.of(context).cursorColor,
                           ),
                           onPressed: () {
                             addTask('${titleController.text}');
@@ -209,63 +190,12 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     ).then((value) {
       changeTask(item);
-      // Show Snackbar
-      if (itemDeleted) {
-        final snackBar = SnackBar(
-          content: Text('Task Deleted'),
-          action: SnackBarAction(
-              label: 'Undo',
-              onPressed: () {
-                addTask(deletedItem.title);
-              }),
-        );
-        scaffoldKey.currentState.showSnackBar(snackBar);
-      }
     });
-  }
-
-  void initiliazeNotifications() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    notificationAppLaunchDetails =
-        await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-    var initializationSettingsAndroid =
-        AndroidInitializationSettings('app_icon');
-    var initializationSettingsIOS = IOSInitializationSettings();
-    var initializationSettings = InitializationSettings(
-        initializationSettingsAndroid, initializationSettingsIOS);
-    await flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-    );
-  }
-
-  Future<void> showDailNotification() async {
-    var list = StringBuffer();
-    tasks.forEach((element) {
-      list.writeln(
-          '${element.title}                                                                                                                                                                                              ');
-    });
-
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'repeatDailyAtTime channel id',
-        'repeatDailyAtTime channel name',
-        'repeatDailyAtTime description');
-    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-    var platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    if (tasks.isNotEmpty) {
-      await flutterLocalNotificationsPlugin.showDailyAtTime(
-          0, 'Tasks', """$list""", Time(6, 0, 0), platformChannelSpecifics);
-      await flutterLocalNotificationsPlugin.showDailyAtTime(
-          0, 'Tasks', """$list""", Time(12, 0, 0), platformChannelSpecifics);
-      await flutterLocalNotificationsPlugin.showDailyAtTime(
-          0, 'Tasks', """$list""", Time(18, 0, 0), platformChannelSpecifics);
-    }
   }
 
   @override
   void initState() {
     getTasks();
-    initiliazeNotifications();
     super.initState();
   }
 
