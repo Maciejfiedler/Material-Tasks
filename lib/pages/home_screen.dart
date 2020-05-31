@@ -7,6 +7,9 @@ import 'package:Tasks/utils/database/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// Pages
+import 'settings.dart';
+
 // Dart Packages
 import 'dart:math';
 
@@ -66,6 +69,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 ).then((value) {
                   getTasks();
                 });
+              }),
+          IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsScreen(),
+                    ));
               })
         ],
       ),

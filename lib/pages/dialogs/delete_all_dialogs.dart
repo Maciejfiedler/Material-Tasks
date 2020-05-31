@@ -2,7 +2,6 @@
 import 'package:Tasks/utils/database/database.dart';
 import 'package:Tasks/utils/model/task.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // Page
 import 'package:Tasks/pages/home_screen.dart';
@@ -47,12 +46,8 @@ class _DeleteAllState extends State<DeleteAll> {
                     ? Colors.white
                     : Colors.black,
             onChanged: (value) async {
-              // Save in Local Storage
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-
               setState(() {
-                prefs.setBool('deleteOnlyCompleted', value);
-                onlyDeleteCompleted = prefs.getBool('deleteOnlyCompleted');
+                onlyDeleteCompleted = value;
               });
             }),
       ),
@@ -62,7 +57,7 @@ class _DeleteAllState extends State<DeleteAll> {
           child: Text(
             "Cancel",
             style: TextStyle(
-              color: Theme.of(context).textSelectionColor,
+              color: Theme.of(context).cursorColor,
             ),
           ),
           splashColor: Colors.grey.withOpacity(0.5),
@@ -122,17 +117,8 @@ class _DeleteAllState extends State<DeleteAll> {
     getTasks();
   }
 
-  // initialize Shareds Preferences
-  void initializeSharedPreferences() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    onlyDeleteCompleted = await prefs.setBool('deleteOnlyCompleted',
-        onlyDeleteCompleted == null ? true : onlyDeleteCompleted);
-  }
-
   @override
   void initState() {
-    initializeSharedPreferences();
     super.initState();
   }
 }
