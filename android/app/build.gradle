@@ -45,10 +45,10 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "www.materialtasks.com"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
-        versionCode 5
-        versionName "5"
+        versionCode 8
+        versionName "8"
     }
 
    signingConfigs {

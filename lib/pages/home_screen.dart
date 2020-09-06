@@ -116,8 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
         showTask(item);
       },
       trailing: Checkbox(
-          activeColor: Theme.of(context).textSelectionColor,
-          checkColor: Theme.of(context).accentColor,
+          activeColor: MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
+          checkColor: MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Colors.white
+                      : Colors.black,
           value: item.complete,
           onChanged: (value) {
             changeTask(Task(id: item.id, title: item.title, complete: value));
@@ -169,8 +173,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   controller: titleController,
                   textCapitalization: TextCapitalization.sentences,
                   onSubmitted: (value) {
-                    addTask('${titleController.text}');
-                    titleController.clear();
+                    if(titleController.text.length > 0){
+                      addTask('${titleController.text}');
+                      titleController.clear();
+                    }
                   },
                   autofocus: true,
                   decoration: InputDecoration(
@@ -180,8 +186,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Theme.of(context).cursorColor,
                           ),
                           onPressed: () {
-                            addTask('${titleController.text}');
-                            titleController.clear();
+                            if(titleController.text.length > 0){
+                              addTask('${titleController.text}');
+                              titleController.clear();
+                            }
+
                           })),
                 ),
               ),

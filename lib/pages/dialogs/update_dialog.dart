@@ -33,6 +33,8 @@ class UpdateScreen extends StatefulWidget {
       item, tasks, database, changeTitleController, scaffoldKey);
 }
 
+
+
 class _UpdateScreenState extends State<UpdateScreen> {
   // Task
   final Task item;
@@ -48,6 +50,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   // Scaffold Key
   final GlobalKey<ScaffoldState> scaffoldKey;
+
+  Color save_cancel_color(){
+    if(MediaQuery.of(context).platformBrightness == Brightness.light){
+      return Colors.black;
+    } else{
+      return Colors.white;
+    }
+  }
 
   _UpdateScreenState(this.item, this.tasks, this.database,
       this.changeTitleController, this.scaffoldKey);
@@ -117,7 +127,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
           child: Text(
             "Cancel",
             style: TextStyle(
-              color: Theme.of(context).textSelectionColor,
+              color: save_cancel_color()
             ),
           ),
           splashColor: Colors.grey.withOpacity(0.5),
@@ -131,7 +141,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
           child: Text(
             "Save",
             style: TextStyle(
-              color: Theme.of(context).textSelectionColor,
+              color:save_cancel_color(),
             ),
           ),
           splashColor: Colors.grey.withOpacity(0.5),
