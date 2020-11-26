@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
     <title>Material Tasks</title>
 </head>
 
@@ -18,7 +18,7 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
             <a class="navbar-brand" href="#">
-                <img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> Material Tasks
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> Material Tasks
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,7 +51,8 @@
         <h1>Material Tasks</h1>
         <h2>Keep it simple</h2>
         <br>
-        <img class="representLogo" src="assets/images/logo.svg" alt="Logo" class="titleimage">
+        <img class="representLogo" src="assets/logo.svg" width="512" alt="Logo" class="titleimage" style="box-shadow: 0 0 20px #0000007a;">
+        <br>
         <a href="https://play.google.com/store/apps/details?id=www.materialtasks.com" target="_blank"><img src="assets/google-play-badge.png" width="256" alt=""></a>
     </div>
     <br id="about">
@@ -67,7 +68,7 @@
     <div class="featuresDIV">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="assets/screenshots/screenshot1.jpg" class="card-img" alt="Screenshot" style="width: 70%;">
+                <img src="assets/screenshot1.png" class="card-img" alt="Screenshot" style="width: 70%;">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -144,32 +145,6 @@
             <a style="display: inline-block;" href="" onclick="return false;">materialtasks@gmail.com</a></div>
 
     </div>
-
-    <br>
-    <!--- Firebase --->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyDTI-W_PwcIMtqNp0JpLxF0CT3wZhRKYas",
-            authDomain: "todo-app-ae5ef.firebaseapp.com",
-            databaseURL: "https://todo-app-ae5ef.firebaseio.com",
-            projectId: "todo-app-ae5ef",
-            storageBucket: "todo-app-ae5ef.appspot.com",
-            messagingSenderId: "1095668401181",
-            appId: "1:1095668401181:web:64bb23af00af5be03db2f4",
-            measurementId: "G-HN2CV41HXR"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
 </body>
 
 
